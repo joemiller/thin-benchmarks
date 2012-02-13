@@ -37,6 +37,7 @@ for ((i=0; i < 20; i++)) do
 done
 
 echo "==> Running ab ..."
+#$AB_CMD -n 10000 -c 20 http://127.0.0.1:9000/
 $AB_CMD -n 10000 -c 20 http://127.0.0.1:3000/
 
 # echo "==> Running httperf ..."
@@ -44,7 +45,7 @@ $AB_CMD -n 10000 -c 20 http://127.0.0.1:3000/
 
 echo "==> Stopping haproxy"
 kill %1
-# rm -f haproxy.cfg
+rm -f haproxy.cfg
 
 echo "==> Stopping thin"
-#thin -R config.ru -p 3000 -s${processes} -d stop
+thin -R config.ru -p 3000 -s${processes} -d stop
